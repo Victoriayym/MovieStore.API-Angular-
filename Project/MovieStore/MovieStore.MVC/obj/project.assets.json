@@ -5049,11 +5049,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.MVC\\MovieStore.MVC.csproj",
+      "projectUniqueName": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.MVC\\MovieStore.MVC.csproj",
       "projectName": "MovieStore.MVC",
-      "projectPath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.MVC\\MovieStore.MVC.csproj",
+      "projectPath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.MVC\\MovieStore.MVC.csproj",
       "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.MVC\\obj\\",
+      "outputPath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.MVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5069,11 +5069,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj": {
-              "projectPath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj"
+            "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj": {
+              "projectPath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj"
             },
-            "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Infrastructure\\MovieStore.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Infrastructure\\MovieStore.Infrastructure.csproj"
+            "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Infrastructure\\MovieStore.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Infrastructure\\MovieStore.Infrastructure.csproj"
             }
           }
         }

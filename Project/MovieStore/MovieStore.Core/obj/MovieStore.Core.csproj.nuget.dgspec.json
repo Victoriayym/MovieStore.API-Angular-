@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj": {}
+    "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj": {
+    "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj",
+        "projectUniqueName": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj",
         "projectName": "MovieStore.Core",
-        "projectPath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj",
+        "projectPath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj",
         "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\obj\\",
+        "outputPath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",

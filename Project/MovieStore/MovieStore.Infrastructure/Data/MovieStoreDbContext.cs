@@ -39,18 +39,115 @@ namespace MovieStore.Infrastructure.Data
 
         public DbSet<Trailer> Trailers { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
+
+        public DbSet<Cast> Casts { get; set; }
+
+        public DbSet<MovieCast> MovieCasts { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<UserRole> UserRoles { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Favorite> Favorites { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
             modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
+            modelBuilder.Entity<Cast>(ConfigureCast);
+            modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<User>(ConfigureUser);
+            modelBuilder.Entity<Role>(ConfigureRole);
+            modelBuilder.Entity<UserRole>(ConfigureUserRole);
+            modelBuilder.Entity<Purchase>(ConfigurePurchase);
+            modelBuilder.Entity<Favorite>(ConfigureFavorite);
+            modelBuilder.Entity<Review>(ConfigureReview);
         }
+
+        private void ConfigureReview(EntityTypeBuilder<Review> modelBuilder)
+        {
+            modelBuilder.ToTable("Review");
+            modelBuilder.HasKey(r => new { r.MovieId, r.UserId });
+            modelBuilder.HasOne(r => r.Movie).WithMany(r => r.Reviews).HasForeignKey(r => r.MovieId);
+            modelBuilder.HasOne(r => r.User).WithMany(r => r.Reviews).HasForeignKey(r => r.UserId);
+            modelBuilder.Property(r => r.ReviewText).HasMaxLength(20000);
+            modelBuilder.Property(r => r.Rating).HasColumnType("nvarchar(max)");
+        }
+        private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> modelBuilder)
+        {
+            modelBuilder.ToTable("MovieCast");
+            modelBuilder.HasKey(mc => new { mc.MovieId, mc.CastId });
+            modelBuilder.HasOne(mc => mc.Movie).WithMany(mc => mc.MovieCasts).HasForeignKey(mc => mc.MovieId);
+            modelBuilder.HasOne(mc => mc.Cast).WithMany(mc => mc.MovieCasts).HasForeignKey(mc => mc.CastId);
+        }
+
+        private void ConfigureFavorite(EntityTypeBuilder<Favorite> builder)
+        {
+            builder.ToTable("Favorite");
+            builder.HasKey(f => f.Id);
+        }
+        private void ConfigurePurchase(EntityTypeBuilder<Purchase> modelBuilder)
+        {
+            modelBuilder.ToTable("Purchase");
+            modelBuilder.HasKey(p => p.Id);
+            modelBuilder.Property(p => p.UserId);
+            modelBuilder.Property(p => p.PurchaseNumber).ValueGeneratedOnAdd();
+            modelBuilder.Property(p => p.TotalPrice).HasColumnType("decimal(5, 2)").HasDefaultValue(9.9m);
+            modelBuilder.Property(p => p.PurchaseDateTime).HasColumnType("datetime2");
+        }
+        private void ConfigureRole(EntityTypeBuilder<Role> modelBuilder)
+        {
+            modelBuilder.ToTable("Role");
+            modelBuilder.HasKey(r => r.Id);
+            modelBuilder.Property(r => r.Name).HasMaxLength(20);
+        }
+
+        private void ConfigureUserRole(EntityTypeBuilder<UserRole> modelBuilder)
+        {
+            modelBuilder.ToTable("UserRole");
+            modelBuilder.HasKey(ur => new { ur.UserId, ur.RoleId });
+            modelBuilder.HasOne(ur => ur.Role).WithMany(ur => ur.UserRoles).HasForeignKey(ur => ur.RoleId);
+            modelBuilder.HasOne(ur => ur.User).WithMany(ur => ur.UserRoles).HasForeignKey(ur => ur.UserId);
+        }
+        private void ConfigureUser(EntityTypeBuilder<User> modelBuilder)
+        {
+            modelBuilder.ToTable("User");
+            modelBuilder.HasKey(u => u.Id);
+            modelBuilder.Property(u => u.Email).HasMaxLength(256);
+            modelBuilder.Property(u => u.FirstName).HasMaxLength(128);
+            modelBuilder.Property(u => u.DateOfBirth).HasColumnType("datetime2");
+            modelBuilder.Property(u => u.LastName).HasMaxLength(128);
+            modelBuilder.Property(u => u.HashedPassword).HasMaxLength(1024);
+            modelBuilder.Property(u => u.Salt).HasMaxLength(1024);
+            modelBuilder.Property(u => u.PhoneNumber).HasMaxLength(16);
+            modelBuilder.Property(u => u.TwoFactorEnabled).HasDefaultValue(false);
+            modelBuilder.Property(u => u.LockoutEndDate).HasColumnType("DateTimeOffset");
+            modelBuilder.Property(u => u.LastLoginDateTime).HasColumnType("datetime2");
+            modelBuilder.Property(u => u.AccessFailedCount);
+            modelBuilder.Property(u => u.IsLocked).HasDefaultValue(false);
+              
+        }
+        private void ConfigureCast(EntityTypeBuilder<Cast> modelBuilder)
+        {
+            modelBuilder.ToTable("Cast");
+            modelBuilder.HasKey(c=>c.Id);
+            modelBuilder.Property(c => c.Name).HasMaxLength(256);
+            modelBuilder.Property(c => c.Gender).HasMaxLength(20);
+            modelBuilder.Property(c => c.TmdbUrl).HasMaxLength(2084);
+            modelBuilder.Property(c => c.ProfilePath).HasMaxLength(2084); 
+
+        }
+      
         private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> modelBuilder)
         {
             modelBuilder.ToTable("MovieGenre");
             modelBuilder.HasKey(mg => new { mg.MovieId, mg.GenreId });
-            modelBuilder.HasOne(mg => mg.Movie).WithMany(g => g.MovieGenres).HasForeignKey(mg => mg.MovieId);
-            modelBuilder.HasOne(mg => mg.Genre).WithMany(g => g.MovieGenres).HasForeignKey(mg => mg.GenreId);
+            modelBuilder.HasOne(mg => mg.Movie).WithMany(mg => mg.MovieGenres).HasForeignKey(mg => mg.MovieId);
+            modelBuilder.HasOne(mg => mg.Genre).WithMany(mg => mg.MovieGenres).HasForeignKey(mg => mg.GenreId);
         }
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> modelBuilder)
         {
@@ -59,7 +156,6 @@ namespace MovieStore.Infrastructure.Data
             modelBuilder.Property(t => t.Name).HasMaxLength(2084);
             modelBuilder.Property(t => t.TrailerUrl).HasMaxLength(2084);
         }
-
         private void ConfigureMovie(EntityTypeBuilder<Movie> modelBuilder)
         {
             //we can use Fluent API Configuration to model our tables

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H+aItBHHck26JSZWKfCrzy6NUMCIjcTB8dELoCDszpMli1CtsNHR7piaVYUqU8hyb5bhvwlBfbb19xj6Bjf6nw==",
+  "dgSpecHash": "OM7bB0QVG3RL+gJxSV9wimVVTy7LU9uPqqKUV9O/+fQHWkst1PFF2/zw36ZGpYtQUt4yF7ZH81QZamZWgcu3rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dell\\Desktop\\code\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj",
+  "projectFilePath": "C:\\Users\\dell\\Documents\\GitHub\\ASP.NET\\Project\\MovieStore\\MovieStore.Core\\MovieStore.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dell\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\dell\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
