@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MovieStore.Core.ServiceInterfaces;
 using MovieStore.MVC.Models;
+using MovieStore.Infrastructure.Services;
 
 namespace MovieStore.MVC.Controllers
 {
   
     public class MoviesController : Controller
     {
+        //interview question
+        //IOC, ASP.NET Core has built-in IOC/DI
+        //In .NET Framework we need to reply on third-party IOC to do the Dependency Injection
+        private readonly IMovieService _movieService;
+        public MoviesController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
         //GET localhost/Movies/index
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
+            //call our Movie Service method, highest grossing method
+            var movies = await _movieService.GetTop25HiestRevenueMovies();
+            
             //var movies = new List<Movie>
             //{
             //    new Movie {Id = 1, Title = "Avengers: Infinity War", Budget = 1200000},

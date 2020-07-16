@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieStore.Core.Entities;
-
+using System.Collections.Generic;
+using System.Linq;
 namespace MovieStore.Infrastructure.Data
 {
     //install all the EF Core libraries using Nuget package Manager
@@ -53,6 +54,17 @@ namespace MovieStore.Infrastructure.Data
         public DbSet<Favorite> Favorites { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
+        //regular lists, Dicti..all collection implement IEnumerable,
+        //so linq methods will point to IEnumerable extension methods
+        //Dbsets, since they implement IQuerable they point to IQuerable methods.
+        public void Test()
+        {
+            var ll = new List<int>();
+            //Func<Tsource, bool> predicate
+            ll.Where(x => x > 3);
+            //Expression<Func<Tsource, bool>> needs to be translated into SQL later
+            Genres.Where(g =>g.Id==2);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
