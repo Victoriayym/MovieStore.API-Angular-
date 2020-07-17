@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MovieStore.Core.ServiceInterfaces;
 using MovieStore.MVC.Models;
 
 namespace MovieStore.MVC.Controllers
@@ -16,9 +17,23 @@ namespace MovieStore.MVC.Controllers
     //Index--Action method
     public class HomeController : Controller
     {
-        //Action method
-        public IActionResult Index()
+        private readonly IMovieService _movieService;
+
+        public HomeController(IMovieService movieService)
         {
+            _movieService = movieService;
+        }
+        //Action method
+        public async Task<IActionResult> Index()
+        {
+            //we need Movie Card we are going to use that one in a lot of places
+            //1. Homepage--show top revenue movies-->Movie Card
+            //2. Genres/show Movies belonging to that genre-->Movie Card
+            //3.Top Rated Movies-->Top Movies as a card
+            //we have to create this Movie Card in such a way that it can be reused in lots of places
+            //partial views will help us in creating reusable views across the application
+            // Partial views are views inside another view
+
             //return an instance of a class that implements that IActonResult
             //By default, MVC will look for same View name as Action method name
             //It will look inside Views folder-->Home(same name as Controller)-->Index.cshtml
@@ -36,7 +51,8 @@ namespace MovieStore.MVC.Controllers
             //request-->m1--some process--next m2--next m3..m5.-->response
             //every middleware has to make sure call the next middleware and works well
             //order of middlewares is really important, if you change the order, it won't work well
-            return View();
+            var movies = await _movieService.GetTop25HiestRevenueMovies();
+            return View(movies);
         }
 
         

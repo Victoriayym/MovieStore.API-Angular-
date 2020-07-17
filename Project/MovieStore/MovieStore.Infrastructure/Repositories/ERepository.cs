@@ -47,6 +47,8 @@ namespace MovieStore.Infrastructure.Repositories
             await _dbContext.Set<T>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
+            //for user interface
+            //make sure its working properly
         }
         public async Task<T> UpdateAsync(T entity)
         {

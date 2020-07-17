@@ -24,32 +24,31 @@ namespace MovieStore.Infrastructure.Services
             return await _movieRepository.GetHighestRevenueMovies();
         }
 
-        Task<Movie> IMovieService.CreateMovie(Movie movie)
+        public async Task<IEnumerable<Movie>> GetTop25RatedMovies()
         {
-            throw new NotImplementedException();
+            return await _movieRepository.GetTop25RatedMovies();
         }
 
-        Task<Movie> IMovieService.GetMovieById(int Id)
+        public virtual async Task<Movie> GetMovieById(int Id)
         {
-            throw new NotImplementedException();
+            return await _movieRepository.GetByIdAsync(Id);
         }
 
-        Task<int> IMovieService.GetMovieCount(string title)
+        public async Task<Movie> CreateMovie(Movie movie)
         {
-            throw new NotImplementedException();
+            return await _movieRepository.AddAsync(movie);
+        }
+        public async Task<Movie> UpdateMovie(Movie movie)
+        {
+            return await _movieRepository.UpdateAsync(movie);
         }
 
-        Task<IEnumerable<Movie>> IMovieService.GetTop25RatedMovies()
+        public Task<int> GetMovieCount(string title=" ")
         {
             throw new NotImplementedException();
         }
-
-        Task<Movie> IMovieService.UpdateMovie(Movie movie)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
-
     public class MovieServiceTest : IMovieService
     {
         public async Task<IEnumerable<Movie>> GetTop25HighestRevenueMovies()

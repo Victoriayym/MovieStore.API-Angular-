@@ -23,5 +23,31 @@ namespace MovieStore.Infrastructure.Repositories
             // select top 25 from Movies order by Revenue desc;
             return movies;
         }
+
+        public async Task<IEnumerable<Movie>> GetTop25RatedMovies()
+        {
+            var movies= await _dbContext.Reviews.Include(m => m.Movie)
+                                                 .GroupBy(r => new
+                                                 {
+                                                     Id = r.MovieId,
+                                                     r.Movie.PosterUrl,
+                                                     r.Movie.Title,
+                                                     r.Movie.ReleaseDate
+                                                 })
+                                                 .OrderByDescending(g => g.Average(m => m.Rating))
+                                                 .Select(m => new Movie
+                                                 {
+                                                     Id = m.Key.Id,
+                                                     PosterUrl = m.Key.PosterUrl,
+                                                     Title = m.Key.Title,
+                                                     ReleaseDate = m.Key.ReleaseDate,
+                                                     Rating = m.Average(x => x.Rating)
+                                                 })
+                                                 .Take(25)
+                                                 .ToListAsync();
+            return movies;
+        }
+
+
     }
 }
