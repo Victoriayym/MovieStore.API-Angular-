@@ -17,6 +17,16 @@ namespace MovieStore.Infrastructure.Repositories
         {
 
         }
+
+
+        public override async Task<Movie> GetByIdAsync(int id)
+        {
+            var movie = await _dbContext.Movies.Include(m => m.Reviews) //all the child tables going to be populated
+                .Include(m => m.MovieCasts).ThenInclude(mc => mc.Cast)//populate cast from MovieCast
+                .Include(m=>m.MovieGenres).ThenInclude(mg=>mg.Genre)
+                .FirstOrDefaultAsync(m=>m.Id==id);
+            return movie;
+        }
         public async Task<IEnumerable<Movie>> GetHighestRevenueMovies()
         {
             var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(25).ToListAsync();

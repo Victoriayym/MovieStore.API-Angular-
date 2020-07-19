@@ -1,7 +1,7 @@
 ﻿@model MovieStore.Core.Entities.Movie
 
     <div class="col-6 cl-lg-3 col-sm-4 col-xl-2">
-        <a>
+        <a href="@Url.Action("Details", "Movies", new {movieId=Model.Id })"> @*helpful for just getting the url portion*@          
             <img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title" />
             @*//@Model meaning the one at the top*@
         </a>

@@ -148,3 +148,7 @@ C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Deb
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\MovieStore.MVC.dll
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\MovieStore.MVC.pdb
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\MovieStore.MVC.genruntimeconfig.cache
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Genres\Default.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MovieCard.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Movies\ByGenre.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Movies\Details.cshtml.g.cs

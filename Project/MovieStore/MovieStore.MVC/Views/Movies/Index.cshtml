@@ -1,4 +1,5 @@
-﻿@*@model List<Movie>
+﻿@model IEnumerable<MovieStore.Core.Entities.Movie>
+@*use list of Movies inside my html, so whenever rendering the view, provide me with the model*@
 @{
     ViewData["Title"] = "Index";
 }
@@ -6,14 +7,14 @@
 <h1>
     List of Movies @ViewBag.MovieCount
 </h1>
-@ViewData["myname"]*@
+@ViewData["myname"]
 @*we need to tell our view what data it is receiving
     in this case its receiving list of movies*@
 @*i wanna use html table or html UL
     Razor Views combine c# with html and they are very powerful and developer friendly*@
 @*1. Place @model IReadOnlyCollection top of the view with the expecting data
     2. we can access the actual data using Model(ASP.NET) alias for @model*@
-@*<table class="table">
+<table class="table">
     <tr>
         <td>
             Id
@@ -34,4 +35,4 @@
             <td>@movie.Budget</td>
         </tr>
     }
-</table>*@
+</table>

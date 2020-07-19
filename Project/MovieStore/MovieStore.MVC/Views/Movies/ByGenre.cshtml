@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<MovieStore.Core.Entities.Movie>
-
+<h1>@ViewData["Title"]</h1>
 <div>
     <div class="container-fluid">
         <div class="row">
@@ -11,11 +11,3 @@
         </div>
     </div>
 </div>
-@*
-    entity will be shared throught the app. 
-    repository read from database, data layer: get my movies from the database
-    ; servie is business logic layer: get movies and see the ratings;
-*@
-@*
-    build HTML dynamically: 10 movies, foreach loop
-*@

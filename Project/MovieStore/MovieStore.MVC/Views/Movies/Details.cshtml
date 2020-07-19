@@ -1,0 +1,68 @@
+﻿@model MovieStore.Core.Entities.Movie
+@using System.Globalization;
+<div class="row text-light bg-dark">
+    <div class="col-6">
+        <img src="@Model.PosterUrl" alt="@Model.Title" height="250" />
+    </div>
+    <div class="col-6">
+        <h1>@Model.Title</h1>
+        <div><small>@Model.Tagline</small></div>
+        <div><label>@Model.RunTime m | @Model.ReleaseDate?.ToString("yyyy")</label></div>
+        <div>
+            @foreach (var item in Model.MovieGenres)
+            {
+                <span class="badge badge-secondary">@item.Genre.Name</span>
+            }
+        </div>
+        <div><span class="badge badge-warning">@Model.Reviews.Average(r => r.Rating).ToString("F")</span></div>
+        <p><small>@Model.Overview</small></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-5">
+        <h3>Movie Facts</h3>
+        <div class="border-bottom">Release Date <span class="badge badge-secondary">@Model.ReleaseDate?.ToString("MMM dd, yyyy")</span></div>
+        <div class="border-bottom">Run Time <span class="badge badge-secondary">@Model.RunTime</span></div>
+        <div class="border-bottom">Box Office <span class="badge badge-secondary">@Model.Revenue?.ToString("C3", CultureInfo.CurrentCulture)</span></div>
+        <div class="border-bottom">Budget <span class="badge badge-secondary">@Model.Budget?.ToString("C3", CultureInfo.CurrentCulture)</span></div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <h3>Cast</h3>
+        <div class="row">
+            <div class="col-sm-4">
+                Profile
+            </div>
+            <div class="col-sm-4">
+                Actor
+            </div>
+            <div class="col-sm-4">
+                Character
+            </div>
+        </div>
+        @foreach (var item in Model.MovieCasts)
+        {
+            <a href="@item.Cast.TmdbUrl">
+                <div class="row">
+                    <div class="col-sm-4">
+                        @if (string.IsNullOrEmpty(item.Cast.ProfilePath))
+                        {
+                            <span>@item.Cast.Name</span>
+                        }
+                        else
+                        {
+                            <img height="75" src="@item.Cast.ProfilePath" alt="@item.Cast.Name" />
+                        }
+
+                    </div>
+                    <div class="col-sm-4">
+                        <span>@item.Cast.Name</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>@item.Character</span>
+                    </div>
+                </div>
+            </a>
+        }
+
+    </div>
+</div>

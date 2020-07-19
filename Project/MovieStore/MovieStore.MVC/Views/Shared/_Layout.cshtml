@@ -34,13 +34,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Signup</a>
                         </li>
                     </ul>
+                    @*
+                        the same menu on every page
+                    *@
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody() @*look for specific pages *@
         </main>
     </div>
 

@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using MovieStore.Core.ServiceInterfaces;
 using MovieStore.MVC.Models;
 using MovieStore.Infrastructure.Services;
+using MovieStore.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using MovieStore.Core.RepositoryInterfaces;
 
 namespace MovieStore.MVC.Controllers
 {
@@ -16,9 +19,13 @@ namespace MovieStore.MVC.Controllers
         //IOC, ASP.NET Core has built-in IOC/DI
         //In .NET Framework we need to reply on third-party IOC to do the Dependency Injection
         private readonly IMovieService _movieService;
-        public MoviesController(IMovieService movieService)
+        private readonly MovieStoreDbContext _dbContext;
+        private readonly IGenreRepository _genreRepository;
+        public MoviesController(IMovieService movieService, MovieStoreDbContext dbContext, IGenreRepository genreRepository)
         {
             _movieService = movieService;
+            _dbContext = dbContext;
+            _genreRepository = genreRepository;
         }
         //GET localhost/Movies/index
         [HttpGet]
@@ -50,8 +57,34 @@ namespace MovieStore.MVC.Controllers
             //1.strongly typed models(preferred way)
             //2.ViewBag-dynamic
             //3.ViewData-key/value
-            return View();
+            return View(movies);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int movieId)
+        {
+            var movie =await  _movieService.GetMovieById(movieId);
+            return View(movie);
+        }
+        [HttpGet]
+        public async Task<IActionResult> ByGenre(int genreId)
+        {
+
+            var movies = await _dbContext.Movies
+                .Include(m => m.MovieGenres)
+                .Where(m => m.MovieGenres
+                      .Any(mg => mg.GenreId == genreId))
+                .ToListAsync();
+            var genre = await _genreRepository.GetByIdAsync(genreId);
+            if (genre != null)
+            {
+                ViewData["Title"] = genre.Name;
+            } else
+            {
+                ViewData["Title"] = "N/A";
+            }
+            return View(movies);
+        }
+       
         [HttpPost]
         public IActionResult Create(string title, decimal budget, string TITLE, string tite)
         {
