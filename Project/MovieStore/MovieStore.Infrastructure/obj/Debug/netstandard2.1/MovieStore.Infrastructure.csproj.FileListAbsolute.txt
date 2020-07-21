@@ -18,7 +18,7 @@ C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastruct
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.csprojAssemblyReference.cache
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.AssemblyInfo.cs
-C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.csproj.CopyComplete
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.dll
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.pdb
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.Infrastructure\obj\Debug\netstandard2.1\MovieStore.Infrastructure.csproj.CoreCompileInputs.cache

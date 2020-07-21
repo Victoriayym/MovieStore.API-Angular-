@@ -51,7 +51,7 @@ namespace MovieStore.Infrastructure.Services
     }
     public class MovieServiceTest : IMovieService
     {
-        public async Task<IEnumerable<Movie>> GetTop25HighestRevenueMovies()
+        public IEnumerable<Movie> GetTop25HighestRevenueMovies()
         {
             var movies = new List<Movie>()
                         {
@@ -60,7 +60,7 @@ namespace MovieStore.Infrastructure.Services
                             new Movie {Id = 3, Title = "Star Wars: The Force Awakens", Budget = 1200000},
                             new Movie {Id = 4, Title = "Titanic", Budget = 1200000},
                         };
-            return movies;
+            return  movies;
         }
 
         Task<Movie> IMovieService.CreateMovie(Movie movie)

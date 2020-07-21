@@ -27,12 +27,7 @@
                             @await Component.InvokeAsync("Genres") 
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Signup</a>
-                        </li>
+                        <partial name="_LoginResult"/>
                     </ul>
                     @*
                         the same menu on every page

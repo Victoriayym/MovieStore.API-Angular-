@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.Core.ServiceInterfaces;
-using MovieStore.MVC.Models;
-using MovieStore.Infrastructure.Services;
 using MovieStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using MovieStore.Core.RepositoryInterfaces;
