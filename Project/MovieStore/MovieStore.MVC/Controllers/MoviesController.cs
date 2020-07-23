@@ -5,6 +5,11 @@ using MovieStore.Core.ServiceInterfaces;
 using MovieStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using MovieStore.Core.RepositoryInterfaces;
+using System.Security.Claims;
+using System;
+using MovieStore.Infrastructure.Services;
+using Microsoft.AspNetCore.Mvc.Filters;
+using MovieStore.MVC.Filters;
 
 namespace MovieStore.MVC.Controllers
 {
@@ -17,11 +22,14 @@ namespace MovieStore.MVC.Controllers
         private readonly IMovieService _movieService;
         private readonly MovieStoreDbContext _dbContext;
         private readonly IGenreRepository _genreRepository;
-        public MoviesController(IMovieService movieService, MovieStoreDbContext dbContext, IGenreRepository genreRepository)
+        private readonly IUserService _userService;
+        public MoviesController(IMovieService movieService, MovieStoreDbContext dbContext, IGenreRepository genreRepository,
+            IUserService userService)
         {
             _movieService = movieService;
             _dbContext = dbContext;
             _genreRepository = genreRepository;
+            _userService = userService;
         }
         //GET localhost/Movies/index
         [HttpGet]
@@ -55,10 +63,19 @@ namespace MovieStore.MVC.Controllers
             //3.ViewData-key/value
             return View(movies);
         }
+        [MovieStoreFilter]
         [HttpGet]
         public async Task<IActionResult> Details(int movieId)
         {
             var movie =await  _movieService.GetMovieById(movieId);
+            var user = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            ViewBag.purchased = false;
+            if (user != null&& !string.IsNullOrWhiteSpace(user.Value))
+            {
+                //var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+                //ViewBag.IsPurchased = _dbContext.Purchases.Any(p => p.UserId == userId && p.MovieId==movieId);
+                ViewBag.purchased = await _userService.IsMoviePurchased(int.Parse(user.Value), movie.Id);
+            }
             return View(movie);
         }
         [HttpGet]

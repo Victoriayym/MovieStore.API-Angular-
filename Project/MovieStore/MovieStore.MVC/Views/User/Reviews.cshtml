@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MovieStore.Core.Entities.Review>
+    <h1>
+        List of Reviews 
+    </h1>
+   
+        @foreach (var item in Model)
+        {
+            <div>@item.MovieId</div>
+        }
+   

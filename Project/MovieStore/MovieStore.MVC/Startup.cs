@@ -14,6 +14,7 @@ using MovieStore.Infrastructure.Repositories;
 using MovieStore.Core.ServiceInterfaces;
 using MovieStore.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using MovieStore.MVC.Helpers;
 
 namespace MovieStore.MVC
 {
@@ -30,10 +31,12 @@ namespace MovieStore.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllersWithViews();
             services.AddDbContext<MovieStoreDbContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("MovieStoreDbConnection")));
             //DI in ASP.NET Core has 3 types of Lifetimes
             //Scoped, Singleton, Transient
+            services.AddMemoryCache();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(
                             options =>
@@ -51,6 +54,8 @@ namespace MovieStore.MVC
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICryptoService, CryptoService>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IFavoriteRepository, FavoriteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +63,8 @@ namespace MovieStore.MVC
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseMovieScoreExceptionMiddleware();
             }
             else
             {

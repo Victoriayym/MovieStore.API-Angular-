@@ -229,4 +229,9 @@ C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Deb
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginResult.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LogResult.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Review.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\User\Purchases.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\User\Reviews.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Movies\test.cshtml.g.cs
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\User\CheckFavorite.cshtml.g.cs

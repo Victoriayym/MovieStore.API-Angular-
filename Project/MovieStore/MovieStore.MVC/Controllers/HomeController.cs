@@ -55,28 +55,34 @@ namespace MovieStore.MVC.Controllers
             return View(movies);
         }
 
-        
-    }
-
-    public interface XYX
-    {
-        int Add(int x, int y);
-    }
-    public interface ABC
-    {
-        int Add(int x, int y);
-
-    }
-    public class MyClass: XYX, ABC
-    {
-        public int Add(int x, int y)
+        public IActionResult Error()
         {
-            return x+y;
-        }
-        public int ABC(int x, int y)
-        {
-            return x + y;
+            return View(new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
     }
+
+    //public interface XYX
+    //{
+    //    int Add(int x, int y);
+    //}
+    //public interface ABC
+    //{
+    //    int Add(int x, int y);
+
+    //}
+    //public class MyClass: XYX, ABC
+    //{
+    //    public int Add(int x, int y)
+    //    {
+    //        return x+y;
+    //    }
+    //    public int ABC(int x, int y)
+    //    {
+    //        return x + y;
+    //    }
+    //}
 }
 

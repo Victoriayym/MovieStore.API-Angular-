@@ -63,7 +63,7 @@ namespace MovieStore.MVC.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Invalid Login");
                 }
-                var claims = new List<Claim> 
+                var claims = new List<Claim> //think of it a permission
                 {
                     new Claim(ClaimTypes.GivenName, user.FirstName),
                     new Claim(ClaimTypes.Surname, user.LastName),
@@ -71,6 +71,7 @@ namespace MovieStore.MVC.Controllers
                     new Claim(ClaimTypes.Name, user.Email),
                 };
                 //we need to create an Identity Object to hold those claims
+                //think of it as a property of an user
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 //finally we are going to create a cookie that will be attached to the Http Response
                 //HttpContext is probably the most important class in ASP.NET taht holds all the information regarding the HTTP
