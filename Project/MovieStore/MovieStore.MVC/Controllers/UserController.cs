@@ -108,15 +108,9 @@ namespace MovieStore.MVC.Controllers
         //4.Exception filter, but in real world we used Exception middleware to cach exception
         //5.Resource filter
         [HttpGet]
-        public async Task<IActionResult> CheckFavorite(FavoriteRequestModel favoriteRequestModel)
+        public IActionResult CheckFavorite(FavoriteRequestModel favoriteRequestModel)
         {
-            var movie = await _movieService.GetMovieById(favoriteRequestModel.MovieId);
-            var user = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-            ViewBag.Favorited = false;
-            if (user != null && !string.IsNullOrWhiteSpace(user.Value))
-            {
-                ViewBag.Favorited = await _userService.IsFavorited(int.Parse(user.Value), movie.Id);
-            }
+            
             return View();
 
             //favoriteRequestModel.UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);

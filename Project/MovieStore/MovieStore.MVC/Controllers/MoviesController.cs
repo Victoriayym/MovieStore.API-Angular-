@@ -76,6 +76,11 @@ namespace MovieStore.MVC.Controllers
                 //ViewBag.IsPurchased = _dbContext.Purchases.Any(p => p.UserId == userId && p.MovieId==movieId);
                 ViewBag.purchased = await _userService.IsMoviePurchased(int.Parse(user.Value), movie.Id);
             }
+            ViewBag.Favorited = false;
+            if (user != null && !string.IsNullOrWhiteSpace(user.Value))
+            {
+                ViewBag.Favorited = await _userService.IsFavorited(int.Parse(user.Value), movie.Id);
+            }
             return View(movie);
         }
         [HttpGet]
