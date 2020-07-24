@@ -3,8 +3,24 @@
         List of Reviews 
     </h1>
    
+    <table class="table">
+        <tr>
+            <th>Movie Name</th>
+            <th>Review Description</th>
+
+
+        </tr>
         @foreach (var item in Model)
         {
-            <div>@item.MovieId</div>
+    <tr>
+        <td>@item.Movie.Title</td>
+        <td>@item.ReviewText</td>
+
+    </tr>
+
+            
         }
+
+    </table>
+       
    

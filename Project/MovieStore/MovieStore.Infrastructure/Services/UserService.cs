@@ -125,20 +125,24 @@ namespace MovieStore.Infrastructure.Services
         }
         public async Task<Review> SaveReview(Review review)
         {
-            var movie= await _movieService.GetMovieById(review.MovieId);
-            var reviewContent = new Review
+            var exisitngReview = await _dbContext.Reviews.FirstOrDefaultAsync(r => r.MovieId == review.MovieId&& r.UserId == review.UserId);
+            if (exisitngReview == null)
             {
-                MovieId = movie.Id,
-                UserId = review.UserId,
-                Rating = review.Rating,
-                ReviewText=review.ReviewText
-            };
-            await _dbContext.Reviews.AddAsync(reviewContent);
+                await _dbContext.Reviews.AddAsync(review);
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                exisitngReview.Rating = review.Rating;
+                exisitngReview.ReviewText= review.ReviewText;
+                await _dbContext.SaveChangesAsync();
+            }
+            
             return review;
         }
         public async Task<IEnumerable<Review>> ReviewListbyUser(int userId)
         {
-            var reviews = await _dbContext.Reviews.Where(r => r.UserId == userId).ToListAsync();
+            var reviews = await _dbContext.Reviews.Include(r=>r.Movie).Where(r => r.UserId == userId).ToListAsync();
  
             return reviews;
         }

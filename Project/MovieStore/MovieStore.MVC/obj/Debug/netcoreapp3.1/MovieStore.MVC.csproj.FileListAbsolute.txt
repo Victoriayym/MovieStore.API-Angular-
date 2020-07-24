@@ -234,4 +234,3 @@ C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Deb
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\User\Purchases.cshtml.g.cs
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\User\Reviews.cshtml.g.cs
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Movies\test.cshtml.g.cs
-C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.MVC\obj\Debug\netcoreapp3.1\Razor\Views\User\CheckFavorite.cshtml.g.cs

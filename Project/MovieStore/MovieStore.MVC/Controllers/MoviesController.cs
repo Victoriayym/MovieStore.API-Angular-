@@ -70,6 +70,7 @@ namespace MovieStore.MVC.Controllers
             var movie =await  _movieService.GetMovieById(movieId);
             var user = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             ViewBag.purchased = false;
+
             if (user != null&& !string.IsNullOrWhiteSpace(user.Value))
             {
                 //var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);

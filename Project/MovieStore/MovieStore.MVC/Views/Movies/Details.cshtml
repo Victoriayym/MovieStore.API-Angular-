@@ -23,40 +23,52 @@
         <p><small>@Model.Overview</small></p>
     </div>
     <div class="col-2">
-        <div><span class="badge badge-secondary">Trailer</span></div>
+        
+                <button type="button" class="btn-primary btn">
+                 Trailer
+                </button>
+        
         @if (ViewBag.Favorited)
         {
-            <button type="button" class="btn-primary btn" asp-action="CheckFavorite" asp-controller="User">
-                It's favorited
+
+            <form method="post" asp-action="DeleteFavorite" asp-controller="User">
+                 @*<div class="col-lg-2 mb-4">*@
+                 <button style="color:red" type="submit" class="btn-primary btn">
+            <i class="fas fa-heart"></i>
             </button>
+             <input type="hidden" value="@Model.Id" name="MovieId" />
+             @*</div>*@
+            </form>
         }
         else
         {
             <form method="post" asp-action="Favorite" asp-controller="User">
-                <div class="col-lg-2 mb-4">
-                    <input type="submit" value="Add Favorite" class="btn btn-primary" />
+                @*<div class="col-lg-2 mb-4">*@
+                    <button style="color:floralwhite" type="submit" class="btn-primary btn">
+                        <i class="fas fa-heart"></i>
+                    </button>
                     <input type="hidden" value="@Model.Id" name="MovieId" />
-                </div>
+                @*</div>*@
             </form>
         }
-        @*@if (Context.User.Identity.IsAuthenticated)
-        {*@
-        <button type="button" class="btn-primary btn" data-target="#reviewModal" data-toggle="modal">
+        <button type="button" class="btn-primary btn" data-target="#reviewModal" data-toggle="modal"
+                asp-action="Review" asp-controller="User">
             Review
         </button>
+        @*}*@
 
         @if (ViewBag.Purchased)
         {
-            <div><span class="badge badge-secondary"><button>Watch Movie</button></span></div>
+            @*<div>*@<span class="badge badge-secondary"><button>Watch Movie</button></span>@*</div>*@
 
         }
         else
         {
             <form method="post" asp-action="Purchase" asp-controller="User">
-                <div class="col-lg-2 mb-4">
+                @*<div class="col-lg-2 mb-4">*@
                     <input type="submit" value="BUY @Model.Price" class="btn btn-primary" />
                     <input type="hidden" value="@Model.Id" name="MovieId" />
-                </div>
+                @*</div>*@
             </form>
         }
         @*}*@
