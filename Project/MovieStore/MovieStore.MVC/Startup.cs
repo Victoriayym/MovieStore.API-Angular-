@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,12 +61,12 @@ namespace MovieStore.MVC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment()) //开发的时候
             {
                 //app.UseDeveloperExceptionPage();
-                app.UseMovieScoreExceptionMiddleware();
+                app.UseMovieScoreExceptionMiddleware(); 
             }
-            else
+            else //正常运行
             {
                 app.UseExceptionHandler("/Home/Error");
             }
@@ -80,6 +80,9 @@ namespace MovieStore.MVC
 
             app.UseEndpoints(endpoints =>
             {
+                //Routing--Pattern matching technique--check if it is match
+                //1. Traditional way of routing
+                //2. Attribute based routing
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

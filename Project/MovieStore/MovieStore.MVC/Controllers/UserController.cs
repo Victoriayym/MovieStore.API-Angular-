@@ -9,6 +9,9 @@ using MovieStore.Core.ServiceInterfaces;
 using MovieStore.Core.Entities;
 using MovieStore.Core.RepositoryInterfaces;
 using Microsoft.AspNetCore.Authorization;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace MovieStore.MVC.Controllers
 {
@@ -39,17 +42,13 @@ namespace MovieStore.MVC.Controllers
     public class UserController : Controller
     { 
         
-        private readonly IMovieService _movieService;
         private readonly IUserService _userService;
-        private readonly IUserRepository _userRepository;
-
-        public UserController(IUserService userService, IMovieService movieService, IUserRepository userRepository)
+        
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _movieService = movieService;
-            _userRepository = userRepository;
         }
-        [HttpGet]
+        [HttpGet] //加载
         public IActionResult Index()
         {
             return View();
@@ -60,8 +59,13 @@ namespace MovieStore.MVC.Controllers
         {
             purchaseRequestModel.UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-            await _userService.Purchase(purchaseRequestModel);
-           
+            //await _userService.Purchase(purchaseRequestModel);
+            using (var httpClient=new HttpClient())
+            {
+                var JsonContent = new StringContent(JsonConvert.SerializeObject(purchaseRequestModel), Encoding.UTF8, "application/json");
+                await httpClient.PostAsync("http://localhost:50404/api/Purchase", JsonContent);
+            }
+     
             return LocalRedirect("~/");
         }
         [Authorize]
@@ -111,7 +115,7 @@ namespace MovieStore.MVC.Controllers
             bool isFavorited =  await _userService.IsFavorited(userId, movieId);
             return Json(isFavorited);
         }
-
+        [HttpPost]
         public async Task<IActionResult> DeleteFavorite(FavoriteRequestModel favoriteRequestModel)
         {
             var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
@@ -124,7 +128,7 @@ namespace MovieStore.MVC.Controllers
         //Some piece of code that runs either before a controller or action method executes or when some event happens
         //that runs before or after specific stages in the http pipeline
         //1.Authorization
-        //2.Action Filter
+        //2.Action Filter 
         //3.Result Filter
         //4.Exception filter, but in real world we used Exception middleware to cach exception
         //5.Resource filter

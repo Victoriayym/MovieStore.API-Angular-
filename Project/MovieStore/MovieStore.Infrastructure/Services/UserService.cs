@@ -98,7 +98,7 @@ namespace MovieStore.Infrastructure.Services
             return null;
         }
 
-        public async Task Purchase(PurchaseRequestModel purchaseRequestModel)
+        public async Task<Purchase> Purchase(PurchaseRequestModel purchaseRequestModel)
         {
             var movie = await _movieService.GetMovieById(purchaseRequestModel.MovieId);
             var purchase = new Purchase
@@ -109,7 +109,7 @@ namespace MovieStore.Infrastructure.Services
                 PurchaseNumber=purchaseRequestModel.PurchaseNumber,
                 PurchaseDateTime=purchaseRequestModel.PurchaseDateTime.Value
             };
-            await _purchaseRepository.AddAsync(purchase); 
+            return await _purchaseRepository.AddAsync(purchase); 
         }
 
         public async Task<IEnumerable<Movie>> PurchasedMovies(int userId)
@@ -168,8 +168,7 @@ namespace MovieStore.Infrastructure.Services
 
         public async Task RemoveFavorite(FavoriteRequestModel favoriteRequest)
         {
-            var favoriteMovie =
-                await _favoriteRepository.ListAsync(r => r.UserId == favoriteRequest.UserId &&
+            var favoriteMovie = await _favoriteRepository.ListAsync(r => r.UserId == favoriteRequest.UserId &&
                                                          r.MovieId == favoriteRequest.MovieId);
             await _favoriteRepository.DeleteAsync(favoriteMovie.First());
         }

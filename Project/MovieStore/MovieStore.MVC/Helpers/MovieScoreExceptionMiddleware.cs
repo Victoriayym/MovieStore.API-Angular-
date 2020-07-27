@@ -22,7 +22,6 @@ namespace MovieStore.MVC.Helpers
             _next = next;
             _logger = logger;
         }
-
         public async Task Invoke(HttpContext httpContext)
         {
             try
@@ -44,7 +43,7 @@ namespace MovieStore.MVC.Helpers
             //Serilog(use this one) NLog and Log4net(nuget)
             // 1. Exception message
             // 2. Exception StackTrace
-            // 3. When the exception happned. Datetime
+            // 3. When the exception happened. Datetime
             // 4. The User Info
             // 5. Where in our code the exception happened
             _logger.LogInformation($"---------------Start OF LOGGING-------------------");

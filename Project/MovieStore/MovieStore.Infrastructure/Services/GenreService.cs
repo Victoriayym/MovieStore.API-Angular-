@@ -12,7 +12,7 @@ namespace MovieStore.Infrastructure.Services
     public class GenreService : IGenreService
     {
         private readonly IGenreRepository _genreRepository;
-        private readonly IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache; //临时存在内存中
         private static readonly string _genresKey = "genres";
         private static readonly TimeSpan _defaultCacheDuration = TimeSpan.FromDays(30);
        

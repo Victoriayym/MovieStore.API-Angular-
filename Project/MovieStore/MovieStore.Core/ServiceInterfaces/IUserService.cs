@@ -14,7 +14,7 @@ namespace MovieStore.Core.ServiceInterfaces
 
         Task<UserLoginReponseModel> ValidateUser(string email, string password);
 
-        Task Purchase(PurchaseRequestModel purchaseRequestModel);
+        Task<Purchase> Purchase(PurchaseRequestModel purchaseRequestModel);
 
         Task<IEnumerable<Movie>> PurchasedMovies(int userId);
 
