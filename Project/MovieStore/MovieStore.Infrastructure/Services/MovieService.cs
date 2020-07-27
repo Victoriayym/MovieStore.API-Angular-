@@ -43,6 +43,11 @@ namespace MovieStore.Infrastructure.Services
             return await _movieRepository.UpdateAsync(movie);
         }
 
+        public async Task<IEnumerable<Movie>> GetMovieByGenre(int genreId)
+        {
+            return await _movieRepository.GetMovieByGenre(genreId);
+        }
+
         public Task<int> GetMovieCount(string title=" ")
         {
             throw new NotImplementedException();
@@ -51,6 +56,11 @@ namespace MovieStore.Infrastructure.Services
     }
     public class MovieServiceTest : IMovieService
     {
+        public Task<IEnumerable<Movie>> GetMovieByGenre(int genreId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Movie> GetTop25HighestRevenueMovies()
         {
             var movies = new List<Movie>()

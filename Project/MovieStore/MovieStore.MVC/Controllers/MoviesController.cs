@@ -88,11 +88,7 @@ namespace MovieStore.MVC.Controllers
         public async Task<IActionResult> ByGenre(int genreId)
         {
 
-            var movies = await _dbContext.Movies
-                .Include(m => m.MovieGenres)
-                .Where(m => m.MovieGenres
-                      .Any(mg => mg.GenreId == genreId))
-                .ToListAsync();
+            var movies = await _movieService.GetMovieByGenre(genreId);
             var genre = await _genreRepository.GetByIdAsync(genreId);
             if (genre != null)
             {

@@ -37,5 +37,26 @@ namespace MovieStore.API.Controllers
             }
             return Ok(movies);
         }
+        [HttpGet]
+        [Route("genre/{genreId:int}")]
+        public async Task<IActionResult> GetMoviesByGenre(int genreId)
+        {
+            var movies = await _movieService.GetMovieByGenre(genreId);
+            if (!movies.Any())
+            {
+                return NotFound("No Movies Found!");
+            }
+            return Ok(movies);
+        }
+
+        public async Task<IActionResult> GetMovieById(int movieId)
+        {
+            var movie = await _movieService.GetMovieById(movieId);
+            if (movie is null)
+            {
+                return NotFound("No Movies Found!");
+            }
+            return Ok(movie);
+        }
     }
 }

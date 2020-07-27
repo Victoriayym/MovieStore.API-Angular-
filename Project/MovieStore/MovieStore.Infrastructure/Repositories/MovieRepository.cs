@@ -26,7 +26,18 @@ namespace MovieStore.Infrastructure.Repositories
                 .Include(m=>m.MovieGenres).ThenInclude(mg=>mg.Genre)
                 .FirstOrDefaultAsync(m=>m.Id==id);
             return movie;
-        } 
+        }
+
+        public async Task<IEnumerable<Movie>> GetMovieByGenre(int genreId)
+        {
+            var movies = await _dbContext.Movies
+               .Include(m => m.MovieGenres)
+               .Where(m => m.MovieGenres
+                     .Any(mg => mg.GenreId == genreId))
+               .ToListAsync();
+            return movies;
+        }
+
         public async Task<IEnumerable<Movie>> GetHighestRevenueMovies()
         {
             var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(25).ToListAsync();
