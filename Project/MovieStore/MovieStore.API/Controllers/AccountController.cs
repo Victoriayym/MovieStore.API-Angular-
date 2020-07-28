@@ -38,7 +38,13 @@ namespace MovieStore.API.Controllers
             return Ok(user);
 
         }
-
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestModel loginRequest)
+        {
+            var user = await _userService.ValidateUser(loginRequest.Email, loginRequest.Password);
+            return Ok(user);
+        }
 
     }
 }

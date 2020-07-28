@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MovieStore.Core.Entities;
 using MovieStore.Core.ServiceInterfaces;
+
 
 namespace MovieStore.API.Controllers
 {
@@ -14,10 +17,11 @@ namespace MovieStore.API.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
-
-        public MoviesController(IMovieService movieService)
+        private readonly IMapper _mapper;
+        public MoviesController(IMovieService movieService, IMapper mapper)
         {
             _movieService = movieService;
+            _mapper = mapper;
         }
         //we want to construct a URL for showing top 25 revenue movies
         //[Route("api/[controller]")]
@@ -42,21 +46,24 @@ namespace MovieStore.API.Controllers
         public async Task<IActionResult> GetMoviesByGenre(int genreId)
         {
             var movies = await _movieService.GetMovieByGenre(genreId);
-            if (!movies.Any())
-            {
-                return NotFound("No Movies Found!");
-            }
-            return Ok(movies);
+            var movieDTOs = _mapper.Map<List<MovieDTO>>(movies);
+            return Ok(movieDTOs);
         }
-
+        [HttpGet]
+        [Route("movie/{movieId:int}")]
         public async Task<IActionResult> GetMovieById(int movieId)
         {
             var movie = await _movieService.GetMovieById(movieId);
-            if (movie is null)
-            {
-                return NotFound("No Movies Found!");
-            }
-            return Ok(movie);
+            var movieDTO = _mapper.Map<MovieDTO>(movie);
+            return Ok(movieDTO);
+        }
+
+        [HttpGet]
+        [Route("toprated")]
+        public async Task<IActionResult> TopRated()
+        {
+            var movies = await _movieService.GetTop25RatedMovies();
+            return Ok(movies);
         }
     }
 }

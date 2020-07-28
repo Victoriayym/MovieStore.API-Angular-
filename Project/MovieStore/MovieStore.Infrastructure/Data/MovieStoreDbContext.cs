@@ -100,7 +100,7 @@ namespace MovieStore.Infrastructure.Data
             modelBuilder.HasOne(r => r.Movie).WithMany(r => r.Reviews).HasForeignKey(r => r.MovieId);
             modelBuilder.HasOne(r => r.User).WithMany(r => r.Reviews).HasForeignKey(r => r.UserId);
             modelBuilder.Property(r => r.ReviewText).HasMaxLength(20000);
-            modelBuilder.Property(r => r.Rating).HasColumnType("nvarchar(max)");
+            modelBuilder.Property(r => r.Rating).HasColumnType("decimal(5, 2)");
         }
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> modelBuilder)
         {

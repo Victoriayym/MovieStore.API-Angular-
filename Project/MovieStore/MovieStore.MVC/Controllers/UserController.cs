@@ -59,12 +59,12 @@ namespace MovieStore.MVC.Controllers
         {
             purchaseRequestModel.UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-            //await _userService.Purchase(purchaseRequestModel);
-            using (var httpClient=new HttpClient())
-            {
-                var JsonContent = new StringContent(JsonConvert.SerializeObject(purchaseRequestModel), Encoding.UTF8, "application/json");
-                await httpClient.PostAsync("http://localhost:50404/api/Purchase", JsonContent);
-            }
+            await _userService.Purchase(purchaseRequestModel);
+            //using (var httpClient=new HttpClient())
+            //{
+            //    var JsonContent = new StringContent(JsonConvert.SerializeObject(purchaseRequestModel), Encoding.UTF8, "application/json");
+            //    await httpClient.PostAsync("http://localhost:50404/api/Purchase", JsonContent);
+            //}
      
             return LocalRedirect("~/");
         }

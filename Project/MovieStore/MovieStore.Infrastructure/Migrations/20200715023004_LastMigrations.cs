@@ -105,7 +105,7 @@ namespace MovieStore.Infrastructure.Migrations
                 {
                     MovieId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
-                    Rating = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<string>(type: "decimal(5, 2)", nullable: false),
                     ReviewText = table.Column<string>(maxLength: 20000, nullable: true)
                 },
                 constraints: table =>

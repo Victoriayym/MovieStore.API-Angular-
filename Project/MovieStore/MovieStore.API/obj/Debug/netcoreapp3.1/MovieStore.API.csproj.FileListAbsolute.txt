@@ -52,8 +52,10 @@ C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\bin\Deb
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\bin\Debug\netcoreapp3.1\MovieStore.API.runtimeconfig.dev.json
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\bin\Debug\netcoreapp3.1\MovieStore.API.dll
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\bin\Debug\netcoreapp3.1\MovieStore.API.pdb
-C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.csproj.CoreCompileInputs.cache
-C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.dll
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.pdb
 C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.genruntimeconfig.cache
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.csproj.CoreCompileInputs.cache
+C:\Users\dell\Documents\GitHub\ASP.NET\Project\MovieStore\MovieStore.API\obj\Debug\netcoreapp3.1\MovieStore.API.MvcApplicationPartsAssemblyInfo.cache
