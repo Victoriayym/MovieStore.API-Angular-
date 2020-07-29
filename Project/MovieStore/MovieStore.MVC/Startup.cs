@@ -64,12 +64,17 @@ namespace MovieStore.MVC
             if (env.IsDevelopment()) //开发的时候
             {
                 //app.UseDeveloperExceptionPage();
-                app.UseMovieScoreExceptionMiddleware(); 
+                app.UseMovieScoreExceptionMiddleware();
             }
             else //正常运行
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            //app.UseCors(builder => { 
+            //    builder.WithOrigins(Configuration.GetValue<string>("clientSPAUrl")).AllowAnyHeader()
+            //        .AllowAnyMethod()
+            //        .AllowCredentials(); });
+
             app.UseStaticFiles();
 
             app.UseRouting();
