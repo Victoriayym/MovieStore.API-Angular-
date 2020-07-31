@@ -3,9 +3,6 @@ import { Cast } from './cast';
 export interface Movie{
     id: number;
   title: string;
-  posterUrl: string;
-  backdropUrl: string;
-  rating: number;
   overview: string;
   tagline: string;
   budget: number;
