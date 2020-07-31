@@ -2,10 +2,11 @@
 <!--<input type="text" class="" name="" id="" ngMovieShop=""/>-->
 <!-- structural Directives-->
 <!--ngfar, ngif and ngswitch-->
-<ul>
-    <li *ngFor="let genre of genres">
-        <a href="#">
-            {{genre.name}}
-        </a>
-</li>
+<ul class="list-unstyled p-2">
+  <li *ngFor="let genre of genres" class="m-1">
+    <a [routerLink]="['movies/genre', genre.id]">{{ genre.name }}</a>
+  </li>
 </ul>
+
+
+<!--for navigation/routing in angular instead of using href we are using router-->

@@ -3,6 +3,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 //3rd party libraries
+import {
+  NgbCarouselModule,
+  NgbCollapseModule,
+  NgbDropdownModule,
+  NgbModalModule,
+  NgbPaginationModule,
+  NgbTabsetModule,
+  NgbAlertModule
+} from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -12,6 +21,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { MovieCardComponent } from './shared/components/movie-card/movie-card.component';
+import { MovieListComponent } from './movies/movie-list/movie-list.component';
 
 @NgModule({
   //Components, if you wanna a component in Angular
@@ -24,12 +34,20 @@ import { MovieCardComponent } from './shared/components/movie-card/movie-card.co
     LoginComponent,
     SignUpComponent,
     MovieDetailsComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbCarouselModule,
+    NgbCollapseModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbPaginationModule,
+    NgbTabsetModule,
+    NgbAlertModule
   ],
 // dependency injection
   providers: [],

@@ -1,3 +1,4 @@
+import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -11,8 +12,11 @@ const routes: Routes = [
   {path:'login',component:LoginComponent },
   {path:'sign-up',component:SignUpComponent },
   {path:'movie/:id', component:MovieDetailsComponent},
-  {path:'app',component:AppComponent }
+  {path:'app',component:AppComponent },
+  {path:'movies/genre/:id', component:MovieListComponent}
 ];
+//two ways to go to any URL, 1.type URL in the browser
+//2.
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
