@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Purchases } from 'src/app/shared/models/purchases';
 import { Favorite } from 'src/app/shared/models/favorite';
 import { map, tap } from 'rxjs/operators';
-
+//d
 
 @Injectable({
   providedIn: 'root'
