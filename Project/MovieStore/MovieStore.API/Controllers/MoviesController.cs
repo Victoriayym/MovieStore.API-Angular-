@@ -55,6 +55,14 @@ namespace MovieStore.API.Controllers
         {
             var movie = await _movieService.GetMovieById(movieId);
             var movieDTO = _mapper.Map<MovieDTO>(movie);
+            var genres = movie.MovieGenres.Select(g=>g.Genre).ToList();
+            var casts = movie.MovieCasts.Select(c => c.Cast).ToList();
+            movieDTO.Genres = _mapper.Map<List<GenreDTO>>(genres);
+            movieDTO.Casts = _mapper.Map<List<CastDTO>>(casts);
+            if (movie.Reviews.Any())
+            {
+                movieDTO.Rating = movie.Reviews.Average(r => r.Rating);
+            }
             return Ok(movieDTO);
         }
 

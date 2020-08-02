@@ -1,3 +1,6 @@
+
+import { FavoritesComponent } from './account/favorites/favorites.component';
+import { PurchasesComponent } from './account/purchases/purchases.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,11 +16,14 @@ const routes: Routes = [
   {path:'sign-up',component:SignUpComponent },
   {path:'movie/:id', component:MovieDetailsComponent},
   {path:'app',component:AppComponent },
-  {path:'movies/genre/:id', component:MovieListComponent}
+  {path:'movies/genre/:id', component:MovieListComponent},
+  {path:'user/PurchasedMovies', component:PurchasesComponent},
+  {path:'user/FavoritedMovies', component:FavoritesComponent}
+ 
+
 ];
 //two ways to go to any URL, 1.type URL in the browser
 //2.
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

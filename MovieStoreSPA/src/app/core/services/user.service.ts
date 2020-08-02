@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Purchases } from 'src/app/shared/models/purchases';
 import { Favorite } from 'src/app/shared/models/favorite';
 import { map, tap } from 'rxjs/operators';
+import { Movie } from 'src/app/shared/models/movie';
 //d
 
 @Injectable({
@@ -23,12 +24,16 @@ export class UserService {
     return this.apiService.create('/user/review', review);
   }
 
-  getPurchasedMovies(PurchasedMovies: string,User:string,id: number): Observable<Purchases> {
-    return this.apiService.getOne(User+'/'+PurchasedMovies, id);
+  getPurchasedMovies(id: number): Observable<Movie[]> {
+    return this.apiService.getALL(`${'user/PurchasedMovies/'}${id}`);
   }
 
-  ReviewListByUser(ReviewListbyUser: string,User:string,id: number): Observable<Purchases> {
-    return this.apiService.getOne(User+'/'+ReviewListbyUser, id);
+  getFavoritedMovies(id: number): Observable<Movie[]> {
+    return this.apiService.getALL(`${'user/FavoritedMovies/'}${id}`);
+  }
+
+  ReviewListByUser(id: number): Observable<Purchases> {
+    return this.apiService.getOne('User/ReviewListbyUser', id);
   }
   favoriteMovie(favorite: Favorite) {
     return this.apiService.create('/user/favorite', favorite);

@@ -15,7 +15,7 @@ export class MovieListComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    // call api to get list of movies by genres, we nned to get genre id from the Url
+    // call api to get list of movies by genres, we need to get genre id from the Url
     // get the genreId from URL and pass it to Movie Service
     this.route.paramMap.subscribe((params) => {
       this.genreId = +params.get('id');

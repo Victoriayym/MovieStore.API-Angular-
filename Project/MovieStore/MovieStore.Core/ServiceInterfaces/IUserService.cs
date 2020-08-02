@@ -29,5 +29,6 @@ namespace MovieStore.Core.ServiceInterfaces
         Task<bool> IsFavorited(int id, int movieId);
 
         Task RemoveFavorite(FavoriteRequestModel favoriteRequest);
+        Task<IEnumerable<Movie>> FavoritedMovies(int userId);
     }
 }

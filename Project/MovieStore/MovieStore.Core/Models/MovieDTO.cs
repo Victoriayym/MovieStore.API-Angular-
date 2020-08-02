@@ -28,9 +28,9 @@ namespace MovieStore.Core.Entities
 
         public ICollection<Trailer> Trailers { get; set; }
 
-        public ICollection<MovieGenreDTO> MovieGenres { get; set; }
+        public ICollection<GenreDTO> Genres { get; set; }
 
-        public ICollection<MovieCastDTO> MovieCasts { get; set; }
+        public ICollection<CastDTO> Casts { get; set; }
 
         public ICollection<ReviewDTO> Reviews { get; set; }
 

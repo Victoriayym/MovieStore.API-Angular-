@@ -45,6 +45,15 @@ namespace MovieStore.API.Controllers
             var movies=await _userService.PurchasedMovies(userId);
             return Ok(movies);
         }
+
+        [HttpGet]
+        [Route("FavoritedMovies/{userId:int}")]
+        public async Task<IActionResult> FavoritedMovies(int userId)
+        {
+
+            var movies = await _userService.FavoritedMovies(userId);
+            return Ok(movies);
+        }
         [HttpGet]
         [Route("{userId:int}/movie/{movieId:int}/IsPurchased")]
         public async Task<IActionResult> IsPurchased(int userId, int movieId)

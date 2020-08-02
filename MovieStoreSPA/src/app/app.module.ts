@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 //3rd party libraries
 import {
   NgbCarouselModule,
@@ -22,6 +23,9 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { MovieCardComponent } from './shared/components/movie-card/movie-card.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
+import { PurchasesComponent } from './account/purchases/purchases.component';
+import { FavoritesComponent } from './account/favorites/favorites.component';
+
 
 @NgModule({
   //Components, if you wanna a component in Angular
@@ -35,10 +39,15 @@ import { MovieListComponent } from './movies/movie-list/movie-list.component';
     SignUpComponent,
     MovieDetailsComponent,
     MovieCardComponent,
-    MovieListComponent
+    MovieListComponent,
+    PurchasesComponent,
+    FavoritesComponent
+   
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     NgbCarouselModule,

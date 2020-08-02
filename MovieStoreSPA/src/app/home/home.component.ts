@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
     });
   }
 }
-
 //its a super set of JS, its strongly typed like C#; Java
 //Angular cli will transiple TypeScript to Javascript and send it to browser
 //ASP.NET converts your razor syntax to HTML/JS, similar concept

@@ -1,3 +1,5 @@
+import { LoginService } from './../services/login.service';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+isLoggedIn$:Observable<boolean>;
+currentUserStr=localStorage.getItem("currentUser");
+currentUser=JSON.parse(this.currentUserStr);
+  constructor(private loginService:LoginService) { 
+    
 
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.isLoggedIn$=this.loginService.IsLoggedIn;
+    
+  }
+  logout(){
+    this.loginService.logOut();
+  }
 }

@@ -117,7 +117,11 @@ namespace MovieStore.Infrastructure.Services
             var movies = await _dbContext.Purchases.Include(p=>p.Movie).Where(p=>p.UserId==userId).Select(p=>p.Movie).ToListAsync();
             return movies;
         }
-
+        public async Task<IEnumerable<Movie>> FavoritedMovies(int userId)
+        {
+            var movies = await _dbContext.Favorites.Include(f => f.Movie).Where(f => f.UserId == userId).Select(f => f.Movie).ToListAsync();
+            return movies;
+        }
         public async Task<bool> IsMoviePurchased(int userId, int movieId)
         {
             return await _purchaseRepository.GetExistsAsync(p =>
@@ -172,6 +176,8 @@ namespace MovieStore.Infrastructure.Services
                                                          r.MovieId == favoriteRequest.MovieId);
             await _favoriteRepository.DeleteAsync(favoriteMovie.First());
         }
+
+       
     }
 }
 

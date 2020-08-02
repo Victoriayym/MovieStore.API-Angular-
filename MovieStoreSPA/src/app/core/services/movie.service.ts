@@ -9,17 +9,17 @@ import {Movie} from 'src/app/shared/models/movie';
 export class MovieService {
 
   constructor(private apiService:ApiService) { }
-    GetTopRevenueMovies():Observable<Movie[]>{
+    GetTopRevenueMovies():Observable<Movie[]>{ 
       return this.apiService.getALL('movies/toprevenue');}
     
     GetMoviesByGenre(genreId: number):Observable<Movie[]>{
       return this.apiService.getALL(`${'movies/genre/'}${genreId}`); }
 
-    GetMovieDetails(movies: string, id: number): Observable<Movie> {
-        return this.apiService.getOne(movies, id);}
+    GetMovieDetails(movieid: number): Observable<Movie> {
+        return this.apiService.getOne('Movies/movie', movieid);}
 
     GetTopRatedMovies():Observable<Movie[]>{
-      return this.apiService.getALL('toprated');}
+      return this.apiService.getALL('Movies/toprated');}
     
 }
 //in bootstrap there are certain components that have dependency on other 3rd party JS libraries

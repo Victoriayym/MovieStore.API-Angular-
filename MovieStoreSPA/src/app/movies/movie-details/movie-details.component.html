@@ -1,1 +1,50 @@
-<h1>get movieId from url and go to API and get movie details</h1>
+<div class="row text-light bg-dark">
+  <div class="col-4">
+   <img
+      src="{{ movie?.posterUrl }}"
+      alt="{{ movie?.title }}"
+      class="img-fluid"
+    /> 
+  </div>
+  <div class="col-6">
+    <h1>{{movie?.title}}</h1>
+    <div><small>{{movie?.tagline}}</small></div>
+    <div><label>{{movie?.runTime}} m| {{movie?.releaseDate | date:'yyyy'}}</label></div>
+    <div *ngFor="let g of movie?.genres">
+    <a href="#" *ngIf="g" [routerLink]="['/movies/genre/', g?.id ]"
+class="badge badge-pill badge-dark ml-1">
+      {{g?.name}}
+      </a>
+    </div>
+    <div><span class="badge badge-warning">{{movie?.rating| number:'1.1-1'}}</span></div>
+    <p><small>{{movie.overview}}</small></p>
+  </div>
+  <div class="col-2">
+    <button type="button" class="btn-primary btn">
+    Trailer
+    </button>
+  </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-5">
+        <h3>Movie Facts</h3>
+        <div class="border-bottom">Release Date <span class="badge badge-secondary">{{movie?.releaseDate | date}}</span></div>
+        <div class="border-bottom">Run Time <span class="badge badge-secondary">{{movie?.runTime}}</span></div>
+        <div class="border-bottom">Box Office <span class="badge badge-secondary">{{movie?.revenue}}</span></div>
+        <div class="border-bottom">Budget <span class="badge badge-secondary">{{movie?.budget | currency}}</span></div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <h3>Cast</h3>
+        <table class="table">
+        <tbody>
+          <tr *ngFor="let cast of movie?.casts">
+            <td> <img src="{{ cast?.profilePath }}"
+                   class="cast-small-img rounded-circle"
+                   alt="{{ cast?.name }}" /> </td>
+            <td> {{cast.name}} </td>
+            <td> {{cast.character}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
