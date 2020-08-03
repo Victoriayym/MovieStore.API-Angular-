@@ -1,4 +1,4 @@
-
+import { AuthGuard } from './auth.guard';
 import { FavoritesComponent } from './account/favorites/favorites.component';
 import { PurchasesComponent } from './account/purchases/purchases.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
@@ -9,6 +9,7 @@ import { MovieDetailsComponent } from './movies/movie-details/movie-details.comp
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { AppComponent } from './app.component';
+import { ProfileComponent } from './account/profile/profile.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -17,10 +18,10 @@ const routes: Routes = [
   {path:'movie/:id', component:MovieDetailsComponent},
   {path:'app',component:AppComponent },
   {path:'movies/genre/:id', component:MovieListComponent},
-  {path:'user/PurchasedMovies', component:PurchasesComponent},
-  {path:'user/FavoritedMovies', component:FavoritesComponent}
- 
-
+  {path:'user/PurchasedMovies', component:PurchasesComponent,canActivate:[AuthGuard]},
+  {path:'user/FavoritedMovies', component:FavoritesComponent,canActivate:[AuthGuard]},
+  {path:'user/Profile', component:ProfileComponent}
+  
 ];
 //two ways to go to any URL, 1.type URL in the browser
 //2.

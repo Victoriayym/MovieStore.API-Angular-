@@ -13,7 +13,6 @@ currentUserStr=localStorage.getItem("currentUser");
 currentUser=JSON.parse(this.currentUserStr);
   constructor(private loginService:LoginService) { 
     
-
   }
 
   ngOnInit(): void {

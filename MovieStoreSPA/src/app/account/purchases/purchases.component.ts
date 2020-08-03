@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class PurchasesComponent implements OnInit {
  
  movies:Movie[];
-
+ 
   constructor(private userService:UserService) {
     let currentUserStr=localStorage.getItem("currentUser");
     let currentUser=JSON.parse(currentUserStr);
@@ -21,6 +21,7 @@ export class PurchasesComponent implements OnInit {
         this.movies=p;
       }
   );
+
    }
 
   ngOnInit(): void {

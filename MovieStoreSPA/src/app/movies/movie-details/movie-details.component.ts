@@ -3,6 +3,10 @@ import { MovieService } from './../../core/services/movie.service';
 import { Movie } from './../../shared/models/movie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/core/services/user.service';
+import { LoginService } from 'src/app/core/services/login.service';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Purchase } from 'src/app/shared/models/purchase';
 
 @Component({
   selector: 'app-movie-details',
@@ -12,8 +16,13 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailsComponent implements OnInit {
   movie: Movie;
   movieId:number;
+  isLoggedIn$:Observable<boolean>;
+  currentMoviePurchased:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  currentUserStr=localStorage.getItem("currentUser");
+  currentUser=JSON.parse(this.currentUserStr);
 
-  constructor(private route: ActivatedRoute, private movieService:MovieService) { }
+  constructor(private route: ActivatedRoute, private movieService:MovieService,
+    private userService: UserService, private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -24,6 +33,16 @@ export class MovieDetailsComponent implements OnInit {
         console.table(this.movie);
       });
     });
+    this.isLoggedIn$=this.loginService.IsLoggedIn;
   }
-
+  purchaseMovie(){
+    let purchase:Purchase={
+      movieId:this.movieId,
+      userId:this.currentUser.Id};
+    this.userService.purchaseMovie(purchase).subscribe(
+      (p)=>{
+        this.currentMoviePurchased.next(true);
+      }
+    )
+  }
 }

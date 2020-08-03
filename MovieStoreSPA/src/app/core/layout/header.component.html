@@ -21,31 +21,28 @@
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " [routerLink]="['user/PurchasedMovies']"
-          >Purchases</a>
+      <li class="nav-item" >
+        <a class="nav-link " [routerLink]="['user/PurchasedMovies']">
+        Purchases</a>
       </li>
       <li class="nav-item">
         <a class="nav-link " [routerLink]="['user/FavoritedMovies']">
         Favorites</a>
       </li>
       <li class="nav-item" *ngIf="!(isLoggedIn$ | async)">
-        <a class="nav-link " [routerLink]="['sign-up']"
-          >Register</a
-        >
+        <a class="nav-link " [routerLink]="['sign-up']">
+        Register</a>
       </li>
       <li class="nav-item" *ngIf="!(isLoggedIn$ | async)">
-        <a class="nav-link " [routerLink]="['login']"
-          >Login</a
-        >
+        <a class="nav-link " [routerLink]="['login']">
+        Login</a>
       </li>
       <li class="nav-item" *ngIf="(isLoggedIn$ | async)">
         <div ngbDropdown>
           <a class="nav-link" style="cursor: pointer;" ngbDropdownToggle> {{currentUser.firstName}} </a>
           <div ngbDropdownMenu>
-           <a class="nav-link " >Profile</a>
+           <a class="nav-link " [routerLink]="['user/Profile']">Profile</a>
            <a (click)="logout()" class="nav-link">Logout</a>
-           
           </div>
         </div>
       </li>

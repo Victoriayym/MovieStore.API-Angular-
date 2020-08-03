@@ -25,6 +25,8 @@ import { MovieCardComponent } from './shared/components/movie-card/movie-card.co
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { PurchasesComponent } from './account/purchases/purchases.component';
 import { FavoritesComponent } from './account/favorites/favorites.component';
+import { ProfileComponent } from './account/profile/profile.component';
+
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { FavoritesComponent } from './account/favorites/favorites.component';
     MovieCardComponent,
     MovieListComponent,
     PurchasesComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    ProfileComponent
+  
    
   ],
   imports: [

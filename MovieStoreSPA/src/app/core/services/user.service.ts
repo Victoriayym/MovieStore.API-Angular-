@@ -3,7 +3,7 @@ import { Review } from './../../shared/models/review';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Purchase } from 'src/app/shared/models/purchase';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Purchases } from 'src/app/shared/models/purchases';
 import { Favorite } from 'src/app/shared/models/favorite';
 import { map, tap } from 'rxjs/operators';
@@ -14,14 +14,14 @@ import { Movie } from 'src/app/shared/models/movie';
   providedIn: 'root'
 })
 export class UserService {
-
+  isPurchased: BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   constructor(private apiService: ApiService) { }
   purchaseMovie(purchase: Purchase) {
-    return this.apiService.create('/user/purchase', purchase);
+    return this.apiService.create('user/purchase', purchase);
   }
 
   Review(review: Review) {
-    return this.apiService.create('/user/review', review);
+    return this.apiService.create('user/review', review);
   }
 
   getPurchasedMovies(id: number): Observable<Movie[]> {
@@ -45,6 +45,8 @@ export class UserService {
   isMovieFavorited(userId: number, movieId: number): Observable<any> {
     return this.apiService.getALL(`${'/user/'}${userId}/movie/${movieId}${'/favorite'}`);
   }
-
+  get IsPurchased(){
+    return this.isPurchased.asObservable();
+  }
   
 }

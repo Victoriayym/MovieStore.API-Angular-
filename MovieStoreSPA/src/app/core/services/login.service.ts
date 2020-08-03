@@ -8,7 +8,7 @@ import { ApiService } from './api.service';
 export class LoginService {
 isLoggedIn: BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   constructor(private apiService:ApiService) { }
-  Login(login: Login):Observable<Login>{
+Login(login: Login):Observable<Login>{
     return this.apiService.create('account/login', login);
   }
 logOut(){
@@ -19,5 +19,4 @@ logOut(){
 get IsLoggedIn(){
   return this.isLoggedIn.asObservable();
 }
-
 }
