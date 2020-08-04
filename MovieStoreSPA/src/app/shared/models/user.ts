@@ -1,8 +1,11 @@
 export interface User {
-    id: number;
-    firstName: string;
-    lastName: string;
-    dateofBirth:Date;
-    email: string
-
+    email: string;
+    role: Array<string>;
+    exp: string;
+    alias: string;
+    family_name: string;
+    given_name: string;
+    isAdmin: boolean;
+    birthdate: Date;
+    nameid: number;
 }

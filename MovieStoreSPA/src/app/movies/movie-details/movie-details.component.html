@@ -17,7 +17,7 @@ class="badge badge-pill badge-dark ml-1">
       </a>
     </div>
     <div><span class="badge badge-warning">{{movie?.rating| number:'1.1-1'}}</span></div>
-    <p><small>{{movie.overview}}</small></p>
+    <p><small>{{movie.overview | overView}}</small></p>
   </div>
   <div class="col-2">
     <button type="button" class="btn-primary btn">
@@ -35,7 +35,7 @@ class="badge badge-pill badge-dark ml-1">
         <div class="border-bottom">Release Date <span class="badge badge-secondary">{{movie?.releaseDate | date}}</span></div>
         <div class="border-bottom">Run Time <span class="badge badge-secondary">{{movie?.runTime}}</span></div>
         <div class="border-bottom">Box Office <span class="badge badge-secondary">{{movie?.revenue}}</span></div>
-        <div class="border-bottom">Budget <span class="badge badge-secondary">{{movie?.budget | currency}}</span></div>
+        <div class="border-bottom">Budget<span class="badge badge-secondary"> {{movie?.budget | currency}}</span></div>
     </div>
     <div class="col-sm-12 col-md-7">
         <h3>Cast</h3>

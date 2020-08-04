@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieStore.Core.Entities;
@@ -37,7 +38,10 @@ namespace MovieStore.API.Controllers
             await _userService.Purchase(purchaseRequest);
             return Ok();
         }
+        [Authorize]
         [HttpGet]
+        //in mvc authorize attribute will look for Cookie
+        //in API, it will look for JWT in the header
         [Route("PurchasedMovies/{userId:int}")]
         public async Task<IActionResult> PurchasedMovies(int userId)
         {

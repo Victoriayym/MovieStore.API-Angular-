@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using MovieStore.Core.Models.Request;
+using MovieStore.Core.Models.Response;
 using MovieStore.Core.ServiceInterfaces;
 
 namespace MovieStore.API.Controllers
@@ -14,10 +19,11 @@ namespace MovieStore.API.Controllers
     public class AccountController : ControllerBase
     {
         private IUserService _userService;
-
-        public AccountController(IUserService userService)
+        private readonly IConfiguration _configuration;
+        public AccountController(IUserService userService, IConfiguration configuration)
         {
             _userService = userService;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -43,7 +49,39 @@ namespace MovieStore.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequestModel loginRequest)
         {
             var user = await _userService.ValidateUser(loginRequest.Email, loginRequest.Password);
-            return Ok(user);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            return Ok(new { token = GenerateJWT(user) });
+        }
+
+        private string GenerateJWT(UserLoginReponseModel user)
+        {
+            var claims = new List<Claim> //think of it a permission
+                {
+                    new Claim(ClaimTypes.GivenName, user.FirstName),
+                    new Claim(ClaimTypes.Surname, user.LastName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
+                };
+            var identityClaims = new ClaimsIdentity();
+            identityClaims.AddClaims(claims);
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["TokenSettings:PrivateKey"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var expires = DateTime.UtcNow.AddHours(_configuration.GetValue<double>("TokenSettings:ExpirationHours"));
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = identityClaims,
+                Expires = expires,
+                SigningCredentials = credentials,
+                Issuer = _configuration["TokenSettings:Issuer"],
+                Audience = _configuration["TokenSettings:Audience"]
+            };
+            var encodedJwt = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(encodedJwt);
         }
 
     }

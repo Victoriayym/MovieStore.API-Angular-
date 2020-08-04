@@ -1,3 +1,4 @@
+import { OverViewPipe } from './../../pipes/over-view.pipe';
 import { Genre } from 'src/app/shared/models/genre';
 import { MovieService } from './../../core/services/movie.service';
 import { Movie } from './../../shared/models/movie';
@@ -38,7 +39,7 @@ export class MovieDetailsComponent implements OnInit {
   purchaseMovie(){
     let purchase:Purchase={
       movieId:this.movieId,
-      userId:this.currentUser.Id};
+      userId:this.currentUser.id};
     this.userService.purchaseMovie(purchase).subscribe(
       (p)=>{
         this.currentMoviePurchased.next(true);

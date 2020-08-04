@@ -38,13 +38,9 @@ export class ApiService {
         map(resp => resp as any)
         );
   }
-  create(path: string, resource, options?): Observable<any> {
-    return this.http
-      .post(`${environment.apiUrl}${path}`, resource, { headers: this.headers })
-      .pipe(
-        map(response => response),
-        catchError(this.handleError)
-      );
+  create(path:string, resource: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}${path}`,resource)
+    .pipe( map( response => response));
   }
   update(path: string, resource) {
     return this.http

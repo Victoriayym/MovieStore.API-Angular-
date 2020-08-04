@@ -14,7 +14,7 @@ import { Movie } from 'src/app/shared/models/movie';
   providedIn: 'root'
 })
 export class UserService {
-  isPurchased: BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  
   constructor(private apiService: ApiService) { }
   purchaseMovie(purchase: Purchase) {
     return this.apiService.create('user/purchase', purchase);
@@ -45,8 +45,6 @@ export class UserService {
   isMovieFavorited(userId: number, movieId: number): Observable<any> {
     return this.apiService.getALL(`${'/user/'}${userId}/movie/${movieId}${'/favorite'}`);
   }
-  get IsPurchased(){
-    return this.isPurchased.asObservable();
-  }
+ 
   
 }

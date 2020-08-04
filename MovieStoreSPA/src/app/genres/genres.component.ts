@@ -10,7 +10,6 @@ export class GenresComponent implements OnInit {
 
   genres:Genre[];
   constructor(private genreService:GenreService) { }
-
   //Page Life Cycle Hooks
   //Alt+shift f
   //Alt+O from angular2-switch extension
@@ -22,5 +21,4 @@ export class GenresComponent implements OnInit {
       console.log(this.genres);
     });
   }
-
 }

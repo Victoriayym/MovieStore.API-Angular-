@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
     this.loginService.IsLoggedIn.subscribe((r)=>{
       if (r)
       {
-       
         return true;}
       else
       {

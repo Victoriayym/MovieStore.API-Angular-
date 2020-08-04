@@ -5,9 +5,7 @@
           <div class="card-body p-4">  
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">  
               <h1 style="text-align:center">Register</h1>  
-            
               <div class="input-group mb-3">  
-               
                 <input type="text" class="form-control" placeholder="Firstname"  formControlName="firstName">  
               </div>  
               <div class="input-group mb-3">  
@@ -19,8 +17,6 @@
               <div class="input-group mb-3">  
                 <input type="password" class="form-control" placeholder="Password"  formControlName="password">  
               </div>  
-              
-              
               <button type="submit" class="btn btn-block btn-success">Add User</button>  
             </form>  
           </div>  

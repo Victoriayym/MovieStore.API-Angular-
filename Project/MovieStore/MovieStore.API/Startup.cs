@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,10 @@ using MovieStore.Core.ServiceInterfaces;
 using MovieStore.Infrastructure.Data;
 using MovieStore.Infrastructure.Repositories;
 using MovieStore.Infrastructure.Services;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 namespace MovieStore.API
 {
     public class Startup
@@ -46,6 +50,28 @@ namespace MovieStore.API
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<IFavoriteRepository, FavoriteRepository>();
             services.AddAutoMapper(typeof(Startup));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding
+                                .UTF8
+                                .GetBytes(Configuration
+                                    ["TokenSettings:PrivateKey"]))
+                    };
+                });
+            services.AddAuthorization(options =>
+            {
+                var defaultAuthorizationPolicyBuilder =
+                    new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme);
+                defaultAuthorizationPolicyBuilder = defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+                options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

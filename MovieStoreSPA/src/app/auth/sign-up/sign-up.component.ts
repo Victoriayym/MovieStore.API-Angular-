@@ -25,7 +25,6 @@ signupForm;
       this.router.navigate(['login']);
      })
    }
-
   ngOnInit(): void {
   }
 

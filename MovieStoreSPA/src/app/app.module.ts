@@ -26,6 +26,7 @@ import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { PurchasesComponent } from './account/purchases/purchases.component';
 import { FavoritesComponent } from './account/favorites/favorites.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { OverViewPipe } from './pipes/over-view.pipe';
 
 
 
@@ -44,7 +45,8 @@ import { ProfileComponent } from './account/profile/profile.component';
     MovieListComponent,
     PurchasesComponent,
     FavoritesComponent,
-    ProfileComponent
+    ProfileComponent,
+    OverViewPipe
   
    
   ],
