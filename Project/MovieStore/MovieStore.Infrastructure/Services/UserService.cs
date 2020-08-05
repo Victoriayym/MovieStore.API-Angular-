@@ -22,7 +22,6 @@ namespace MovieStore.Infrastructure.Services
         private readonly MovieStoreDbContext _dbContext;
         private readonly IFavoriteRepository _favoriteRepository;
 
-
         public UserService(IUserRepository userRepository, ICryptoService cryptoService, 
             IPurchaseRepository purchaseRepository, IMovieService movieService,
             MovieStoreDbContext dbContext, IFavoriteRepository favoriteRepository)
@@ -161,7 +160,6 @@ namespace MovieStore.Infrastructure.Services
             };
 
             await _favoriteRepository.AddAsync(favoriteMovie);
-            
         }
 
         public async Task<bool> IsFavorited(int id, int movieId)

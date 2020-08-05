@@ -19,6 +19,5 @@ namespace MovieStore.Core.RepositoryInterfaces
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
 
-
     }
 }

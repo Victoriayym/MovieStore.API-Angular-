@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using MovieStore.Core.Models;
 using MovieStore.Core.Models.Request;
 using MovieStore.Core.Models.Response;
 using MovieStore.Core.ServiceInterfaces;
@@ -53,7 +54,9 @@ namespace MovieStore.API.Controllers
             {
                 return Unauthorized();
             }
-            return Ok(new { token = GenerateJWT(user) });
+            var token = GenerateJWT(user);
+            var authresponse = new AuthResponse(user, token);
+            return Ok(authresponse);
         }
 
         private string GenerateJWT(UserLoginReponseModel user)

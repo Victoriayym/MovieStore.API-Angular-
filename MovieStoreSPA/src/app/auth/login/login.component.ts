@@ -19,27 +19,24 @@ export class LoginComponent implements OnInit {
   //after successfull login go back to original page that it comes from (user/purchases page)
   returnUrl: string;
   user:User;
-  userLogin: Login = {
+  userLogin= this.formBuilder.group({
     email:'',
     password:''
-  }
+  });
   constructor(
-    private authService: AuthenticationService,
+    private loginService: LoginService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) {}
-  ngOnInit() {
-    this.authService.login(this.userLogin).subscribe((response) => {
-      if (response) {
-        // navigate to page retutn URL or Home page
-        this.router.navigate(['']);
-      } else {
-        this.invalidLogin = true;
-      }
-    });
+  ngOnInit()//做准备
+   {
+   
   }
 
-  login(){
-    console.log('sss');
+  login(login:Login){
+    console.log(login);
+    this.invalidLogin=!this.loginService.Login(login);
+    
   }
 }

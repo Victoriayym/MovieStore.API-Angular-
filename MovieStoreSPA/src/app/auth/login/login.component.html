@@ -5,7 +5,7 @@
 -->
 <!--Template approach-->
 
-<form (ngSubmit)="login()"> 
+<form [formGroup]="userLogin" (ngSubmit)="login(userLogin.value)">  
   <div *ngIf="invalidLogin" class="alert alert-danger">
     Invalid username and/or password
   </div>
@@ -17,6 +17,7 @@
       id="email"
       aria-describedby="emailHelp"
       placeholder="Enter email"
+      formControlName="email"
     />
   </div>
   <div class="form-group">
@@ -26,6 +27,7 @@
       class="form-control"
       id="password"
       placeholder="Password"
+      formControlName="password"
     />
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
