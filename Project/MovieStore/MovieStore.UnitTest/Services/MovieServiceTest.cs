@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NUnit.Framework;
-using MovieStore.Core;
 using MovieStore.Infrastructure.Services;
 using System.Threading.Tasks;
 using MovieStore.Core.RepositoryInterfaces;
 using MovieStore.Core.Entities;
-using System.Linq.Expressions;
 using System.Linq;
 using Moq;
 
