@@ -55,8 +55,7 @@ namespace MovieStore.API.Controllers
                 return Unauthorized();
             }
             var token = GenerateJWT(user);
-            var authresponse = new AuthResponse(user, token);
-            return Ok(authresponse);
+            return Ok(new { token = token }); 
         }
 
         private string GenerateJWT(UserLoginReponseModel user)

@@ -9,14 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 isLoggedIn$:Observable<boolean>;
-currentUserStr=localStorage.getItem("currentUser");
-currentUser=JSON.parse(this.currentUserStr);
+userName:string;
+
   constructor(private loginService:LoginService) { 
   }
 
   ngOnInit(): void {
     this.isLoggedIn$=this.loginService.IsLoggedIn;
-    
+    this.loginService.getLoggedInName.subscribe((name)=>{
+      this.userName=name;
+    });
   }
   logout(){
     this.loginService.logOut();

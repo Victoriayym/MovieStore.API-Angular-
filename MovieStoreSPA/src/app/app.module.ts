@@ -1,8 +1,10 @@
+import { JwtInterceptor } from './jwt.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 //3rd party libraries
 import {
   NgbCarouselModule,
@@ -65,7 +67,11 @@ import { OverViewPipe } from './pipes/over-view.pipe';
     NgbAlertModule
   ],
 // dependency injection
-  providers: [],
+  providers: [{ 
+    provide: HTTP_INTERCEPTORS, 
+    useClass: JwtInterceptor, 
+    multi: true }
+  ],
   //we can select which component needs to be strated when 
   //application starts
   //main-->AppModule-->bootstrap Appcomponent
