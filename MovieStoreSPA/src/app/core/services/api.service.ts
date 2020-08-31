@@ -11,7 +11,11 @@ export class ApiService {
   private headers: HttpHeaders;
 
   //private readonly..., in angular we dont need it
-  constructor(protected http:HttpClient) { }
+  constructor(protected http:HttpClient) { 
+    this.headers=new HttpHeaders();
+    this.headers.append('Content-Type','application/json');
+    //tell api that send information in JSON format
+  }
   //get movies by genre
   //get all genres
   //get movies purchased by a user
@@ -39,8 +43,9 @@ export class ApiService {
         );
   }
   create(path:string, resource: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}${path}`,resource)
-    .pipe( map( response => response));
+    return this.http.post(`${environment.apiUrl}${path}`,resource, {headers:this.headers})
+    .pipe( map( response => response),
+    catchError(this.handleError));
   }
   update(path: string, resource) {
     return this.http

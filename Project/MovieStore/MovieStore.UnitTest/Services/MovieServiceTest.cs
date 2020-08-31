@@ -50,6 +50,7 @@ namespace MovieStore.UnitTest.Services
             _mockMovieRepository.Setup(m => m.GetHighestRevenueMovies()).ReturnsAsync(_movies);
             _mockMovieRepository.Setup(m => m.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((int m) => _movies.First(x => x.Id == m));
         }
+
         [Test]
         public async Task Test_Movie_Name_By_GivenMovie_Id()
         {
