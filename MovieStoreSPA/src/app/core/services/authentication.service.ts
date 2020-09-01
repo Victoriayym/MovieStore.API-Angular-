@@ -59,7 +59,7 @@ export class AuthenticationService {
 if (!token || new JwtHelperService().isTokenExpired(token)) {
         this.logout();
         return null;
-      }
+      }P
       const decodedToken=new JwtHelperService().decodeToken(token);
       this.user=decodedToken; //get decoded info in payload
       return this.user;

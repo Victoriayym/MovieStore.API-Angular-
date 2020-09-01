@@ -5,7 +5,7 @@ import { Movie } from './../../shared/models/movie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
-import { LoginService } from 'src/app/core/services/login.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Purchase } from 'src/app/shared/models/purchase';
 
@@ -23,7 +23,7 @@ export class MovieDetailsComponent implements OnInit {
   currentUser=JSON.parse(this.currentUserStr);
 
   constructor(private route: ActivatedRoute, private movieService:MovieService,
-    private userService: UserService, private loginService:LoginService) { }
+    private userService: UserService, private authenticationService:AuthenticationService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -34,7 +34,7 @@ export class MovieDetailsComponent implements OnInit {
         console.table(this.movie);
       });
     });
-    this.isLoggedIn$=this.loginService.IsLoggedIn;
+    this.isLoggedIn$=this.authenticationService.isAuthenticated;
   }
   purchaseMovie(){
     let purchase:Purchase={

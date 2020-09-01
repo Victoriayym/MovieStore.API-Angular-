@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+/* import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Login } from './../../shared/models/login';
 import { Injectable, Output, EventEmitter } from '@angular/core';
@@ -21,8 +21,7 @@ isLoggedIn: BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
           return true;
         }else{
           return false;
-        }
-      }
+        }}
       );
       return false;
     }
@@ -34,4 +33,4 @@ isLoggedIn: BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   get IsLoggedIn(){
     return this.isLoggedIn.asObservable();
   }
-  }
+  } */
